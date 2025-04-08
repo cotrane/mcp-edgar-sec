@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from functools import lru_cache
 from typing import Any, Hashable, Literal, Optional
 
-import nest_asyncio
+import nest_asyncio  # type: ignore
 from mcp.server.fastmcp import Context, FastMCP
 
 from edgar_sec.client import EdgarClient, EdgarError
@@ -26,6 +26,8 @@ client_instance: Optional[EdgarClient] = None
 
 @dataclass
 class AppContext:
+    """Application context for the MCP server"""
+
     client: EdgarClient
 
 

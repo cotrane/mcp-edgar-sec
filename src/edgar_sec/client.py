@@ -8,8 +8,8 @@ from typing import Any, Hashable, Literal
 
 import pandas as pd
 import requests
-from edgar import Company, set_identity
-from edgar.entities import COMPANY_FORMS
+from edgar import Company, set_identity  # type: ignore
+from edgar.entities import COMPANY_FORMS  # type: ignore
 
 # Redirect all package logging to stderr to avoid any stdout issues
 # with the MCP client
