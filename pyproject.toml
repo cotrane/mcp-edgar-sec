@@ -1,0 +1,87 @@
+[project]
+name = "edgar-sec"
+version = "0.1.0"
+description = "A tool to interact with the SEC EDGAR API"
+authors = [{ name = "Thomas Kaltenbrunner", email = "your.email@example.com" }]
+requires-python = ">=3.10"
+readme = "README.md"
+license = { text = "MIT" }
+
+dependencies = [
+    "edgartools>=3.14.4",
+    "mcp[cli]>=1.6.0",
+    "httpx>=0.28.1",
+    "hatchling>=1.27.0",
+    "pandas>=2.2.3",
+    "requests>=2.32.3",
+    "nest-asyncio>=1.6.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.5",
+ "pytest-asyncio>=0.26.0",
+ "pytest-cov>=6.1.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "--cov=src --cov-report=term-missing"
+
+[tool.black]
+line-length = 100
+target-version = ["py310"]
+include = '\.pyi?$'
+
+[tool.pylint.messages.control]
+disable = [
+    # Convention (C) messages
+    "C0103", # Invalid name
+    "C0114", # Missing module docstring
+
+    # Refactor (R) messages
+    "R0101", # Simplifiable if statement
+    "R0903", # Too few public methods
+    "R0913", # Too many positional arguments
+    "R1732", # Consider using with
+    "R0801", # Similar lines in multiple files
+
+    # Warning (W) messages
+    "W0102", # Dangerous default value
+    "W0511", # Unspecified encoding and Fixme
+    "W0601", # Global statement
+    "W0611", # Unused argument and Unused import
+    "W0621", # Redefining name from outer scope
+    "W0703", # Catching too general exception
+    "W1202", # Use str.format() for logging
+    "W1401", # Anomalous backslash in string
+
+    # Error (E) messages
+    "E0110", # Abstract class instantiated
+    "E0401", # Unable to import
+    "E1136", # Value is unsubscriptable
+]
+
+[tool.pylint.messages.ignore-paths]
+ignore-paths = [".venv"]
+
+[tool.pylint.format]
+max-line-length = 100
+
+[tool.pylint.master]
+persistent = false
+
+[tool.pylint.design]
+max-args = 10
+max-attributes = 10
+max-locals = 20
+
+[tool.pylint.typecheck]
+# List of members which are set dynamically and missed by Pylint inference
+# system, and so shouldn't trigger E1101 when accessed.
+generated-members = ["numpy.*"]

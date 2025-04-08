@@ -1,0 +1,54 @@
+[MASTER]
+persistent=no
+
+[MESSAGES CONTROL]
+ignore-paths=.venv
+
+# Enable the message, report, category or checker with the given id(s). You can
+# either give multiple identifier separated by comma (,) or put this option
+# multiple time.
+#enable=
+
+# Disable the message, report, category or checker with the given id(s). You
+# can either give multiple identifier separated by comma (,) or put this option
+# multiple time (only on the command line, not in the configuration file where
+# it should appear only once).
+disable=
+    too-many-positional-arguments,
+    invalid-name,
+    too-few-public-methods,
+    missing-module-docstring,
+    unspecified-encoding,
+    consider-using-with,
+    anomalous-backslash-in-string,
+    unused-argument,
+    unused-import,
+    fixme,
+    simplifiable-if-statement,
+    abstract-class-instantiated,
+    dangerous-default-value,
+    logging-fstring-interpolation,
+    global-statement,
+    broad-except,
+    duplicate-code,
+    redefined-outer-name,
+    unsubscriptable-object,
+    import-error,
+
+[DESIGN]
+# Maximum number of arguments for function / method
+max-args=10
+# Max number of attributes for a class (see R0902).
+max-attributes=10
+# Maximum number of locals for function / method body
+max-locals=20
+
+[FORMAT]
+# Maximum number of characters on a single line
+max-line-length=100
+
+[TYPECHECK]
+
+# List of members which are set dynamically and missed by Pylint inference
+# system, and so shouldn't trigger E1101 when accessed.
+generated-members=numpy.*, torch.*
