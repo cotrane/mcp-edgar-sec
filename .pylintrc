@@ -34,6 +34,7 @@ disable=
     redefined-outer-name,
     unsubscriptable-object,
     import-error,
+    deprecated-class,
 
 [DESIGN]
 # Maximum number of arguments for function / method

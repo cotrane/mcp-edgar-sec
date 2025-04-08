@@ -1,0 +1,53 @@
+name: Lint and Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install uv
+        run: |
+          curl -LsSf https://astral.sh/uv/install.sh | sh
+          echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+
+      - name: Install dependencies
+        run: |
+          uv venv
+          source .venv/bin/activate
+          uv pip install -e .
+          uv pip install pylint black pytest pytest-asyncio pytest-cov mypy pandas-stubs types-requests
+
+      - name: Run pylint
+        run: |
+          source .venv/bin/activate
+          pylint src tests --rcfile=.pylintrc
+
+      - name: Run black
+        run: |
+          source .venv/bin/activate
+          black . --check --config pyproject.toml
+
+      - name: Run mypy
+        run: |
+          source .venv/bin/activate
+          mypy src tests
+
+      - name: Run tests with coverage
+        run: |
+          source .venv/bin/activate
+          pytest --cov=src --cov-report=term-missing
