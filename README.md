@@ -27,6 +27,8 @@ This repository provides two main execution modes:
 1. **MCP Server** (Primary Use Case): A Model Control Protocol server that enables AI systems to interact with SEC EDGAR data through a structured interface.
 2. **CLI Tool**: A command-line interface for human users to directly query SEC EDGAR data and test the edgar client.
 
+The repo uses the amazing python package [edgartools](https://github.com/dgunning/edgartools) to connect to the SEC Edgar API. Give it a look for more features which are missing here!
+
 ## Features
 
 - Configuration resources for valid CIK/ticker data and SEC form types
